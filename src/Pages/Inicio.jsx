@@ -8,7 +8,7 @@ import {
 import InicioLayout from "../layout/InicioLayout";
 import { loginRoutes } from "../routes/loginRoutes";
 
-const router = createBrowserRouter(
+const routerLog = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<InicioLayout />}>
       {loginRoutes.map(({ path, Element }) => (
@@ -20,7 +20,7 @@ const router = createBrowserRouter(
 );
 
 const Inicio = () => {
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={routerLog} />;
 };
 
 export default Inicio;

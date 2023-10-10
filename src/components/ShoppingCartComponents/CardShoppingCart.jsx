@@ -1,4 +1,6 @@
 import React from "react";
+import { BsFillTrashFill } from "react-icons/bs";
+import { BiCartAdd } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addProduct,
@@ -12,6 +14,9 @@ const CardShoppingCart = ({ productCart, quantity }) => {
     dispatch(removeProduct(product));
   };
 
+  const addToCart = (product) => {
+    dispatch(addProduct(product));
+  };
   return (
     <>
       <div className="card h-40 lg:card-side bg-base-100 shadow-xl flex flex-col justify-between items-center mb-2">
@@ -32,10 +37,15 @@ const CardShoppingCart = ({ productCart, quantity }) => {
                 className="btn btn-primary join-item text-3xl"
                 onClick={() => removeToCart(productCart.id)}
               >
-                -
+                <BsFillTrashFill />
               </button>
               <button className="join-item mx-4">{quantity} ud(s)</button>
-              <button className="btn join-item btn-primary text-3xl">+</button>
+              <button
+                className="btn join-item btn-primary text-3xl"
+                onClick={() => addToCart(productCart)}
+              >
+                <BiCartAdd />
+              </button>
             </div>
           </div>
           <div className="card-footer justify-evenly flex items-center">

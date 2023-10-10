@@ -29,10 +29,10 @@ const Navbar = () => {
           <NavLink to="/" className="text-white hover:underline">
             Home
           </NavLink>
-          <NavLink to="/" className="text-white hover:underline">
+          <NavLink to="/about" className="text-white hover:underline">
             About
           </NavLink>
-          <NavLink to="/" className="text-white hover:underline">
+          <NavLink to="/contact" className="text-white hover:underline">
             Contact
           </NavLink>
         </div>
@@ -54,12 +54,12 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/" className="text-white hover:underline">
+              <NavLink to="/about" className="text-white hover:underline">
                 About
               </NavLink>
             </li>
             <li>
-              <NavLink to="/register" className="text-white hover:underline">
+              <NavLink to="/contact" className="text-white hover:underline">
                 Contact
               </NavLink>
             </li>

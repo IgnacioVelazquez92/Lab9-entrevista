@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import RootLayout from "./layout/RootLayout";
 import { routes } from "./routes/routes";
-import Inicio from ".//Pages/Inicio";
+import Inicio from "./Pages/Inicio";
 import { useSelector } from "react-redux";
 
 const router = createBrowserRouter(
