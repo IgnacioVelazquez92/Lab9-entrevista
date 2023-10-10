@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard";
 import { FaHome } from "react-icons/fa";
 import { TbFilterShare } from "react-icons/tb";
 import Contador from "./SidebarComponents/Contador";
+import FiltroProduct from "./SidebarComponents/FiltroProduct";
 
 const Product = () => {
   const [products, setProducts] = useState([]);
@@ -18,7 +19,9 @@ const Product = () => {
 
   const fetchData = () => {
     setLoading(true);
-    let apiUrl = `https://api.escuelajs.co/api/v1/products?offset=${currentPage}&limit=8`;
+    let apiUrl = `https://api.escuelajs.co/api/v1/products?offset=${
+      currentPage * 8
+    }&limit=8`;
 
     if (appliedFilters.title) {
       apiUrl += `&title=${encodeURIComponent(appliedFilters.title)}`;
@@ -83,12 +86,6 @@ const Product = () => {
 
   return (
     <>
-      {loading && (
-        <div className="flex justify-center items-center h-screen">
-          <span className="loading loading-spinner loading-lg text-primary"></span>
-        </div>
-      )}
-
       <div className="drawer lg:drawer-open">
         <label
           htmlFor="my-drawer-2"
@@ -98,6 +95,11 @@ const Product = () => {
         </label>
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
+          {loading && (
+            <div className="flex justify-center items-center h-screen">
+              <span className="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+          )}
           <div className="flex gap-4 flex-wrap my-5 items-stretch justify-center">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
@@ -129,48 +131,11 @@ const Product = () => {
           ></label>
           <div className="menu p-4 w-80 min-h-full bg-base-300 text-base-content">
             <Contador />
-            <form className="mt-3 flex flex-col gap-4">
-              <h3 className="text-lg text-center">Busca tus productos</h3>
-              <input
-                className="input input-bordered w-full max-w-xs"
-                type="text"
-                name="title"
-                placeholder="Nombre del producto"
-                value={appliedFilters.title}
-                onChange={handleFilterChange}
-              />
-              <input
-                className="input input-bordered w-full max-w-xs"
-                type="number"
-                name="priceMin"
-                placeholder="Precio mínimo"
-                value={appliedFilters.priceMin}
-                onChange={handleFilterChange}
-              />
-              <input
-                className="input input-bordered w-full max-w-xs"
-                type="number"
-                name="priceMax"
-                placeholder="Precio máximo"
-                value={appliedFilters.priceMax}
-                onChange={handleFilterChange}
-              />
-
-              <input
-                className="input input-bordered w-full max-w-xs"
-                type="text"
-                name="category"
-                placeholder="Categoría"
-                value={appliedFilters.category}
-                onChange={handleFilterChange}
-              />
-              <button
-                className="btn btn-secondary w-full max-w-xs"
-                onClick={resetFilters}
-              >
-                Borrar Filtros
-              </button>
-            </form>
+            <FiltroProduct
+              handleFilterChange={handleFilterChange}
+              appliedFilters={appliedFilters}
+              resetFilters={resetFilters}
+            />
           </div>
         </div>
       </div>
