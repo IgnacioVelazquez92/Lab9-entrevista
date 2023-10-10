@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { ApiClient } from "../../api/services";
+import UserRow from "./UserRow";
 
 const AdminHome = () => {
+  const apiClient = new ApiClient();
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+
+  const getAllUsers = async () => {
+    try {
+      const response = await apiClient.getAllUsers();
+      setUsers(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="overflow-x-auto justify-center ">
+      <h1 className="text-3xl text-primary text-center my-5">
+        Administración de usuarios
+      </h1>
       <table className="table table-lg table-zebra">
         <thead>
           <tr>
@@ -11,31 +32,13 @@ const AdminHome = () => {
             <th>Correo</th>
             <th>Admin</th>
             <th>Bloquear</th>
+            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
-          {/* row 1 */}
-          <tr>
-            <th>1</th>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
-            <td>Blue</td>
-          </tr>
-          <tr>
-            <th>1</th>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
-            <td>Blue</td>
-          </tr>
-          <tr>
-            <th>1</th>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
-            <td>Blue</td>
-          </tr>
+          {users.map((user) => {
+            return <UserRow key={user._id} user={user} />;
+          })}
         </tbody>
       </table>
     </div>

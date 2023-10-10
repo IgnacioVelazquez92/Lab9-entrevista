@@ -9,7 +9,6 @@ const Product = () => {
   const URL = `https://api.escuelajs.co/api/v1/products?offset=${currentPage}&limit=8`;
 
   useEffect(() => {
-    // Realizar la solicitud fetch en un efecto para manejar la asincronía
     fetch(URL)
       .then((response) => {
         return response.json();
@@ -40,7 +39,7 @@ const Product = () => {
           <span className="loading loading-spinner loading-lg text-primary"></span>
         </div>
       )}
-      <div className="flex gap-4 flex-wrap my-5 items-center justify-center">
+      <div className="flex gap-4 flex-wrap my-5 items-stretch justify-center">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

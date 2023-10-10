@@ -46,11 +46,11 @@ export class ApiClient {
     return this.client.delete(`user/delete-user/${id}`);
   }
 
-  async disabledUser(id, isAdmin) {
-    return this.client.patch(`user/disable-user/${id}/${isAdmin}`);
+  async disabledUser(id, disabled) {
+    return this.client.patch(`user/disable-user/${id}/${disabled}`);
   }
 
-  async isAministrator(id, disabled) {
-    return this.client.patch(`user/isAdmin-user/${id}/${disabled}`);
+  async isAdministrator(id, isAdmin) {
+    return this.client.patch(`user/isAdmin-user/${id}/${isAdmin}`);
   }
 }
