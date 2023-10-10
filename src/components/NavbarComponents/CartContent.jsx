@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ShoppingCartList from "../ShoppingCartComponents/ShoppingCartList";
+import { useSelector } from "react-redux";
 
 const CartContent = () => {
+  const [quantity, setQuantity] = useState([]);
+  const carrito = useSelector((store) => store.carrito);
+  const groupedCart = Object.entries(
+    Object.groupBy(carrito.cart, (item) => item.id)
+  );
+
+  useEffect(() => {
+    setQuantity(groupedCart.length);
+  }, [carrito]);
+
   return (
     <div className="drawer drawer-end">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -24,7 +35,7 @@ const CartContent = () => {
               />
             </svg>
             <span className="badge badge-error badge-sm indicator-item ">
-              8
+              {quantity}
             </span>
           </div>
         </label>
