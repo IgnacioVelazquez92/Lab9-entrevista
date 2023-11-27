@@ -5,6 +5,7 @@ import CartContent from "./NavbarComponents/CartContent";
 import HamburgBtn from "./NavbarComponents/HamburgBtn";
 import LightDark from "./NavbarComponents/LightDark";
 import UserLog from "./NavbarComponents/UserLog";
+import "../App.css";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

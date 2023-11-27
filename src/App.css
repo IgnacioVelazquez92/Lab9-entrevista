@@ -25,3 +25,8 @@ font-family: 'Ubuntu', sans-serif;
       background-position: 0% 50%;
     }
   }
+
+
+  .activo{
+    background-color: antiquewhite;
+  }
